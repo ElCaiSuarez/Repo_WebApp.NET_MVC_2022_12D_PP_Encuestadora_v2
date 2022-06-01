@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Usuario - Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mailUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.passwordUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dniUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datetimeFechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.domicilioUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.preferenciaUsuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mailUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.passwordUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dniUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datetimeFechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.domicilioUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.preferenciaUsuario)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UsuarioId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UsuarioId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UsuarioId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

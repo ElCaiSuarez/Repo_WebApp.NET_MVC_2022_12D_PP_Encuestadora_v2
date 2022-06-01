@@ -1,0 +1,66 @@
+﻿@model WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Usuario
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UsuarioId" />
+            <div class="form-group">
+                <label asp-for="nombreUsuario" class="control-label"></label>
+                <input asp-for="nombreUsuario" class="form-control" />
+                <span asp-validation-for="nombreUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="mailUsuario" class="control-label"></label>
+                <input asp-for="mailUsuario" class="form-control" />
+                <span asp-validation-for="mailUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="passwordUsuario" class="control-label"></label>
+                <input asp-for="passwordUsuario" class="form-control" />
+                <span asp-validation-for="passwordUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dniUsuario" class="control-label"></label>
+                <input asp-for="dniUsuario" class="form-control" />
+                <span asp-validation-for="dniUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="datetimeFechaNacimiento" class="control-label"></label>
+                <input asp-for="datetimeFechaNacimiento" class="form-control" />
+                <span asp-validation-for="datetimeFechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="domicilioUsuario" class="control-label"></label>
+                <input asp-for="domicilioUsuario" class="form-control" />
+                <span asp-validation-for="domicilioUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="preferenciaUsuario" class="control-label"></label>
+                <select asp-for="preferenciaUsuario" class="form-control" asp-items="Html.GetEnumSelectList<PreferenciaUsuario>()">
+                    <option selected="selected" value="">Seleccione una Preferencia </option>
+                </select>
+                <span asp-validation-for="preferenciaUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
