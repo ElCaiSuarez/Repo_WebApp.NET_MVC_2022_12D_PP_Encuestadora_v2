@@ -13,7 +13,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         public int EncuestaId { get; set; }
 
         [Required]
-        [Display(Name = "Titulo encuesta")]
+        [Display(Name = "Titulo encuestA")]
         public string tituloEncuesta { get; set; }
 
         [Display(Name = "Fecha creación")]
