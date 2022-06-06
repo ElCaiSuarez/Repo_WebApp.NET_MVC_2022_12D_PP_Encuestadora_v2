@@ -21,5 +21,10 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context
 
         public DbSet<OpcionPregunta> opciones { get; set; }
 
+        public DbSet<EncuestasCliente> encuestasCliente { get; set; }
+
+        public DbSet<EncuestasUsuario> encuestasUsuario { get; set; }
+        
+
     }
 }

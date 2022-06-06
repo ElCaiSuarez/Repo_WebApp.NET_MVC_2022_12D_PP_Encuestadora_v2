@@ -13,31 +13,42 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UsuarioId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Nombre")]
+        [MaxLength(80, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string nombreUsuario { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Correo")]
+        [EmailAddress]
+        [MaxLength(40, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string mailUsuario { get; set; }
 
+        [Required(ErrorMessage = "El {0} es requerido")]
+        [Display(Name = "Contraseña")]
+        [MaxLength(10, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string passwordUsuario { get; set; }
 
+        [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "DNI")]
+        [MaxLength(8, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string dniUsuario { get; set; }
 
+        [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Fecha nacimiento")]
+        [DataType(DataType.Date)]
         public DateTime datetimeFechaNacimiento { get; set; }
 
         [Display(Name = "Domicilio")]
+        [MaxLength(40, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string domicilioUsuario { get; set; }
 
-        [Display(Name = "Preferencia")]
+        //RELACIONES CON OTRAS ENTIDADES
+
+        [Display(Name = "Preferencias")]
         [EnumDataType(typeof(PreferenciaUsuario))]
         public PreferenciaUsuario preferenciaUsuario { get; set; }
 
-        //COMO RELACIONAR LA DBSET DE ENCUESTAS DE CADA CLIENTE???
 
-        //FALTARIA FALTARIA LISTA DE ENCUESTAS RESPONDIDAS o RELACION CON ELLAS, LISTA DE PREFERENCIAS, FECHA DE NACIMIENTO, EMAIL y DOMICILIO
     }
 }

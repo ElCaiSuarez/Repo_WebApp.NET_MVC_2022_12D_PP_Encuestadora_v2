@@ -13,8 +13,9 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OpcionPreguntaId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Titulo opción")]
+        [MaxLength(40, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string tituloOpcion { get; set; }
 
         [Display(Name = "Selección")]
