@@ -12,9 +12,14 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EncuestaId { get; set; }
 
+<<<<<<< HEAD
         [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Titulo encuesta")]
         [MaxLength(40, ErrorMessage = "El maximo permitido para el {0} es {1}")]
+=======
+        [Required]
+        [Display(Name = "Titulo encuestA")]
+>>>>>>> a098841ff0958a3246f9e39e20de949086c4a7cc
         public string tituloEncuesta { get; set; }
 
         [Display(Name = "Fecha creación")]
