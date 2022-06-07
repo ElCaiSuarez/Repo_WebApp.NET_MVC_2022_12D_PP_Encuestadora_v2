@@ -20,10 +20,36 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
         }
 
         // GET: Encuesta
+       
         public async Task<IActionResult> Index()
         {
             var encuestadoraDBContext = _context.encuestas.Include(e => e.Cliente);
             return View(await encuestadoraDBContext.ToListAsync());
+        }
+        public async Task<IActionResult> Disponibles()
+        {
+            var encuestadoraDBContext = _context.encuestas.Include(e => e.Cliente);
+            return View(await encuestadoraDBContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> Responder(int? id)
+        {
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var encuesta = await _context.encuestas
+                    .Include(e => e.Cliente)
+                    .FirstOrDefaultAsync(m => m.EncuestaId == id);
+                if (encuesta == null)
+                {
+                    return NotFound();
+                }
+
+                return View(encuesta);
+            }
         }
 
         // GET: Encuesta/Details/5

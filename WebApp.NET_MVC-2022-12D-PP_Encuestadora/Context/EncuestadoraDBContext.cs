@@ -8,6 +8,9 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context
 {
     public class EncuestadoraDBContext : DbContext
     {
+        //Configuring Many To Many Relationships in Entity Framework Core
+        //https://www.learnentityframeworkcore.com/configuration/many-to-many-relationship-configuration
+        //Fluent API - Relacion N a N entre Encuesta y Usuario
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EncuestasUsuarios>()

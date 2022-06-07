@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Encuesta>
+
+@{
+    ViewData["Title"] = "Disponibles";
+}
+
+<h1>Encuestas Disponibles</h1>
+
+<p>Comentario1: Deberia filtrar las encuestas vencidas</p>
+<p>Comentario2: El boton Responder deberia devolver la lista de preguntas y Opciones de la Encuesta seleccionada</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tituloEncuesta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datetimeCreacionEncuesta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datetimeVencimientoEncuesta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.puntosEncuesta)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var int puntosEncuestaAux = item.puntosEncuesta;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tituloEncuesta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datetimeCreacionEncuesta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datetimeVencimientoEncuesta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.puntosEncuesta)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Cliente.mailCliente)
+                </td>*@
+                <td>
+                    <a asp-action="Responder" asp-route-id="@item.EncuestaId">Responder</a>
+                    @*<a asp-action="Edit" asp-route-id="@item.EncuestaId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EncuestaId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EncuestaId">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
