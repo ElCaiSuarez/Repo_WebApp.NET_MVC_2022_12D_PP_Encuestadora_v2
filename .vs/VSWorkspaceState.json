@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora",
+    "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Views",
+    "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Views\\Home"
   ],
-  "SelectedNode": "\\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora.sln",
+  "SelectedNode": "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
