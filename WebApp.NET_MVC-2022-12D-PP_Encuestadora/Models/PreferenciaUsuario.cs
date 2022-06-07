@@ -11,6 +11,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         NOMBRE_PREFERENCIA_2 = 2,
         NOMBRE_PREFERENCIA_3 = 3,
         NOMBRE_PREFERENCIA_4 = 4,
-        NOMBRE_PREFERENCIA_5 = 5
+        NOMBRE_PREFERENCIA_5 = 5,
+        NOMBRE_PREFERENCIA_6 = 6
     }
 }
