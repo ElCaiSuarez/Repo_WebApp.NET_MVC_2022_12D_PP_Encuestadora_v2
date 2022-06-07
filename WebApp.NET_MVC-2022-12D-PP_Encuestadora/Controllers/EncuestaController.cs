@@ -74,7 +74,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
         // GET: Encuesta/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente");
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "nombreCliente");
             return View();
         }
 
@@ -91,7 +91,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente", encuesta.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "nombreCliente", encuesta.ClienteId);
             return View(encuesta);
         }
 
@@ -108,7 +108,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente", encuesta.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "nombreCliente", encuesta.ClienteId);
             return View(encuesta);
         }
 
@@ -144,7 +144,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente", encuesta.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "nombreCliente", encuesta.ClienteId);
             return View(encuesta);
         }
 

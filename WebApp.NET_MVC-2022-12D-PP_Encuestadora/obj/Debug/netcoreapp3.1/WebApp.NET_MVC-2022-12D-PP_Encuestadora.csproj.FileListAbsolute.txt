@@ -181,5 +181,5 @@ C:\Users\sj011105\source\repos\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora\
 C:\Users\sj011105\source\repos\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora\WebApp.NET_MVC-2022-12D-PP_Encuestadora\obj\Debug\netcoreapp3.1\Razor\Views\EncuestaUsuario\Details.cshtml.g.cs
 C:\Users\sj011105\source\repos\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora\WebApp.NET_MVC-2022-12D-PP_Encuestadora\obj\Debug\netcoreapp3.1\Razor\Views\EncuestaUsuario\Edit.cshtml.g.cs
 C:\Users\sj011105\source\repos\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora\WebApp.NET_MVC-2022-12D-PP_Encuestadora\obj\Debug\netcoreapp3.1\Razor\Views\EncuestaUsuario\Index.cshtml.g.cs
-C:\Users\sj011105\source\repos\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora\WebApp.NET_MVC-2022-12D-PP_Encuestadora\obj\Debug\netcoreapp3.1\Razor\Views\Encuesta\Disponibles.cshtml.g.cs
 C:\Users\sj011105\source\repos\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora\WebApp.NET_MVC-2022-12D-PP_Encuestadora\obj\Debug\netcoreapp3.1\Razor\Views\Encuesta\Responder.cshtml.g.cs
+C:\Users\sj011105\source\repos\Solucion_WebApp.NET_MVC-2022-12D-PP_Encuestadora\WebApp.NET_MVC-2022-12D-PP_Encuestadora\obj\Debug\netcoreapp3.1\Razor\Views\Encuesta\Disponibles.cshtml.g.cs

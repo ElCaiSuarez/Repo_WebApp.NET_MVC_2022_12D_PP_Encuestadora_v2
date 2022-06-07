@@ -50,7 +50,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
         public IActionResult Create()
         {
             ViewData["EncuestaId"] = new SelectList(_context.encuestas, "EncuestaId", "tituloEncuesta");
-            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "dniUsuario");
+            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "nombreUsuario");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EncuestaId"] = new SelectList(_context.encuestas, "EncuestaId", "tituloEncuesta", encuestasUsuarios.EncuestaId);
-            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "dniUsuario", encuestasUsuarios.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "nombreUsuario", encuestasUsuarios.UsuarioId);
             return View(encuestasUsuarios);
         }
 
@@ -86,7 +86,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
                 return NotFound();
             }
             ViewData["EncuestaId"] = new SelectList(_context.encuestas, "EncuestaId", "tituloEncuesta", encuestasUsuarios.EncuestaId);
-            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "dniUsuario", encuestasUsuarios.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "nombreUsuario", encuestasUsuarios.UsuarioId);
             return View(encuestasUsuarios);
         }
 
@@ -123,7 +123,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EncuestaId"] = new SelectList(_context.encuestas, "EncuestaId", "tituloEncuesta", encuestasUsuarios.EncuestaId);
-            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "dniUsuario", encuestasUsuarios.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.usuarios, "UsuarioId", "nombreUsuario", encuestasUsuarios.UsuarioId);
             return View(encuestasUsuarios);
         }
 
