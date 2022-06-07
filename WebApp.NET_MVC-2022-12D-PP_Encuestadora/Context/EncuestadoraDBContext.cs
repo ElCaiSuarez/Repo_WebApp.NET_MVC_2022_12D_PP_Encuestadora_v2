@@ -8,6 +8,19 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context
 {
     public class EncuestadoraDBContext : DbContext
     {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EncuestasUsuarios>()
+                .HasKey(bc => new { bc.EncuestaId, bc.UsuarioId });
+            modelBuilder.Entity<EncuestasUsuarios>()
+                .HasOne(bc => bc.Encuesta)
+                .WithMany(b => b.EncuestasUsuarios)
+                .HasForeignKey(bc => bc.EncuestaId);
+            modelBuilder.Entity<EncuestasUsuarios>()
+                .HasOne(bc => bc.Usuario)
+                .WithMany(c => c.EncuestasUsuarios)
+                .HasForeignKey(bc => bc.UsuarioId);
+        }
         public EncuestadoraDBContext(DbContextOptions<EncuestadoraDBContext> options) : base(options)
         {
         }
@@ -21,10 +34,9 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context
 
         public DbSet<OpcionPregunta> opciones { get; set; }
 
-        public DbSet<EncuestasCliente> encuestasCliente { get; set; }
+        public DbSet<EncuestasUsuarios> encuestasUsuarios { get; set; }     
 
-        public DbSet<EncuestasUsuario> encuestasUsuario { get; set; }
-        
 
     }
+
 }

@@ -7,16 +7,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
 {
-    public class EncuestasUsuario
+    public class EncuestasUsuarios
     {
+        /*
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EncuestasUsuarioId { get; set; }
+        public int EncuestasUsuariosId { get; set; }
+        */
 
-        [ForeignKey(nameof(Encuesta))]
         public int EncuestaId { get; set; }
+        public Encuesta Encuesta { get; set; }
 
-        [ForeignKey(nameof(Usuario))]
         public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+
+       
+
     }
 }

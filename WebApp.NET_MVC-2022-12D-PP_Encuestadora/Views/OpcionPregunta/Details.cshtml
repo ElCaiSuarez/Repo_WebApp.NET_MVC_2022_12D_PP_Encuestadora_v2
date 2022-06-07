@@ -1,0 +1,36 @@
+﻿@model WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.OpcionPregunta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>OpcionPregunta</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.tituloOpcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tituloOpcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.opcionSeleccionada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.opcionSeleccionada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pregunta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pregunta.tituloPregunta)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OpcionPreguntaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

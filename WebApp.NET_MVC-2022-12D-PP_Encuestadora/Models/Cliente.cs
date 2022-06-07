@@ -41,10 +41,14 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         public string domicilioCliente { get; set; }
 
         //RELACIONES CON OTRAS ENTIDADES
-
+        //RELACION 1 a 1 CON PRECIOCLIENTE
         [Display(Name = "Membresia")]
         [EnumDataType(typeof(PrecioCliente))]
         public PrecioCliente precioCliente { get; set; }
+
+        //RELACION 1 a N CON ENCUESTA
+        [Display(Name = "Encuestas")]
+        public ICollection<Encuesta> encuestas { get; set; }
 
 
 

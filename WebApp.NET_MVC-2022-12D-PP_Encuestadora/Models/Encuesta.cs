@@ -26,14 +26,23 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         public DateTime datetimeVencimientoEncuesta { get; set; }
 
         //RELACIONES CON OTRAS ENTIDADES
-        //RELACION 1 a 1
+        //RELACION 1 a 1 CON PUNTOSENCUESTA
         [Display(Name = "Puntos encuesta")]
         [EnumDataType(typeof(PuntosEncuesta))]
         public PuntosEncuesta puntosEncuesta { get; set; }
 
-        //RELACION 1 a N FALTA LA FOREIGN KEY EN PREGUNTA
+        //FK CLIENTE
+        public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
+
+        //RELACION 1 a N CON PREGUNTA
         [Display(Name = "Preguntas")]
-        public IEnumerable<Pregunta> preguntas { get; set; }
+        public ICollection<Pregunta> preguntas { get; set; }
+        
+        //RELACION N a N CON USUARIO
+        [Display(Name = "EncuestasUsuarios")]
+        public ICollection<EncuestasUsuarios> EncuestasUsuarios { get; set; }
+
 
 
 

@@ -25,17 +25,5 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora
                     webBuilder.UseStartup<Startup>();
                 });
 
-        /*
-        //Inicializacion de datos cuando recontruyo la BD
-        public static void InicializarDatos(IHost host)
-        {
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<EncuestadoraDBContext>();
-                InicializacionDeDatos.Inicializar(context);
-            }
-        }
-        */
     }
 }

@@ -21,6 +21,11 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         [Display(Name = "Selección")]
         public bool opcionSeleccionada { get; set; }
 
-        //COMO RELACIONAR Y GUARDAR A LOS USUARIOS CON SUS OPCIONES SELECCIONADAS
+        //RELACIONES CON OTRAS ENTIDADES
+        //FK PREGUNTA
+        public int PreguntaId { get; set; }
+        public Pregunta Pregunta { get; set; }
+
+        
     }
 }

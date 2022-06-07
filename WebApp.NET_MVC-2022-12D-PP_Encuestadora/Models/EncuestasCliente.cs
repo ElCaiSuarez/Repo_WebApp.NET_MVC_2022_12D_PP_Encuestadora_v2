@@ -8,6 +8,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
 {
     public class EncuestasCliente
     {
+        /*
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EncuestasClienteId { get; set; }
@@ -17,5 +18,6 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         
         [ForeignKey(nameof(Cliente))]
         public int ClienteId { get; set; }
+        */
     }
 }

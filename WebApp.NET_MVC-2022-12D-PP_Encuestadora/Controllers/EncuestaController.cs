@@ -22,7 +22,8 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
         // GET: Encuesta
         public async Task<IActionResult> Index()
         {
-            return View(await _context.encuestas.ToListAsync());
+            var encuestadoraDBContext = _context.encuestas.Include(e => e.Cliente);
+            return View(await encuestadoraDBContext.ToListAsync());
         }
 
         // GET: Encuesta/Details/5
@@ -34,6 +35,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
             }
 
             var encuesta = await _context.encuestas
+                .Include(e => e.Cliente)
                 .FirstOrDefaultAsync(m => m.EncuestaId == id);
             if (encuesta == null)
             {
@@ -46,6 +48,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
         // GET: Encuesta/Create
         public IActionResult Create()
         {
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EncuestaId,tituloEncuesta,datetimeCreacionEncuesta,datetimeVencimientoEncuesta,puntosEncuesta")] Encuesta encuesta)
+        public async Task<IActionResult> Create([Bind("EncuestaId,tituloEncuesta,datetimeCreacionEncuesta,datetimeVencimientoEncuesta,puntosEncuesta,ClienteId")] Encuesta encuesta)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente", encuesta.ClienteId);
             return View(encuesta);
         }
 
@@ -78,6 +82,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente", encuesta.ClienteId);
             return View(encuesta);
         }
 
@@ -86,7 +91,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EncuestaId,tituloEncuesta,datetimeCreacionEncuesta,datetimeVencimientoEncuesta,puntosEncuesta")] Encuesta encuesta)
+        public async Task<IActionResult> Edit(int id, [Bind("EncuestaId,tituloEncuesta,datetimeCreacionEncuesta,datetimeVencimientoEncuesta,puntosEncuesta,ClienteId")] Encuesta encuesta)
         {
             if (id != encuesta.EncuestaId)
             {
@@ -113,6 +118,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.clientes, "ClienteId", "mailCliente", encuesta.ClienteId);
             return View(encuesta);
         }
 
@@ -125,6 +131,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Controllers
             }
 
             var encuesta = await _context.encuestas
+                .Include(e => e.Cliente)
                 .FirstOrDefaultAsync(m => m.EncuestaId == id);
             if (encuesta == null)
             {

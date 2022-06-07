@@ -45,7 +45,8 @@
             <div class="form-group">
                 <label asp-for="preferenciaUsuario" class="control-label"></label>
                 <select asp-for="preferenciaUsuario" class="form-control" asp-items="Html.GetEnumSelectList<PreferenciaUsuario>()">
-                    <option selected="selected" value="">Seleccione una Preferencia </option>
+                    @*ESTO DEBE SER AUTOMATIZADO SEGUN LA MEMBRESIA DEL CLIENTE QUE CREA LA ENCUESTA*@
+                    <option selected="selected" value="">Seleccione Preferencia Usuario </option>
                 </select>
                 <span asp-validation-for="preferenciaUsuario" class="text-danger"></span>
             </div>

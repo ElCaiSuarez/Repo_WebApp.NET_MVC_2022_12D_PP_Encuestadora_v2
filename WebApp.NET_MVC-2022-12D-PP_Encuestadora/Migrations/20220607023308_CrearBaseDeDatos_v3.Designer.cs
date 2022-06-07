@@ -10,14 +10,14 @@ using WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context;
 namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
 {
     [DbContext(typeof(EncuestadoraDBContext))]
-    [Migration("20220601141923_GenerarBaseDeDatos")]
-    partial class GenerarBaseDeDatos
+    [Migration("20220607023308_CrearBaseDeDatos_v3")]
+    partial class CrearBaseDeDatos_v3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.25")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -29,24 +29,31 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("cuitCliente")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(11)")
+                        .HasMaxLength(11);
 
                     b.Property<string>("domicilioCliente")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.Property<string>("empresaCliente")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.Property<string>("mailCliente")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.Property<string>("nombreCliente")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
 
                     b.Property<string>("passwordCliente")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<int>("precioCliente")
                         .HasColumnType("int");
@@ -63,6 +70,9 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("datetimeCreacionEncuesta")
                         .HasColumnType("datetime2");
 
@@ -74,11 +84,29 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
 
                     b.Property<string>("tituloEncuesta")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.HasKey("EncuestaId");
 
+                    b.HasIndex("ClienteId");
+
                     b.ToTable("encuestas");
+                });
+
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.EncuestasUsuarios", b =>
+                {
+                    b.Property<int>("EncuestaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EncuestaId", "UsuarioId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("encuestasUsuarios");
                 });
 
             modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.OpcionPregunta", b =>
@@ -88,14 +116,20 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("PreguntaId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("opcionSeleccionada")
                         .HasColumnType("bit");
 
                     b.Property<string>("tituloOpcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.HasKey("OpcionPreguntaId");
+
+                    b.HasIndex("PreguntaId");
 
                     b.ToTable("opciones");
                 });
@@ -107,14 +141,20 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("EncuestaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("tipoPregunta")
                         .HasColumnType("int");
 
                     b.Property<string>("tituloPregunta")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.HasKey("PreguntaId");
+
+                    b.HasIndex("EncuestaId");
 
                     b.ToTable("preguntas");
                 });
@@ -130,21 +170,28 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("dniUsuario")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(8)")
+                        .HasMaxLength(8);
 
                     b.Property<string>("domicilioUsuario")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.Property<string>("mailUsuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.Property<string>("nombreUsuario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
 
                     b.Property<string>("passwordUsuario")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<int>("preferenciaUsuario")
                         .HasColumnType("int");
@@ -152,6 +199,48 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                     b.HasKey("UsuarioId");
 
                     b.ToTable("usuarios");
+                });
+
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Encuesta", b =>
+                {
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Cliente", "Cliente")
+                        .WithMany("encuestas")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.EncuestasUsuarios", b =>
+                {
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Encuesta", "Encuesta")
+                        .WithMany("EncuestasUsuarios")
+                        .HasForeignKey("EncuestaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Usuario", "Usuario")
+                        .WithMany("EncuestasUsuarios")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.OpcionPregunta", b =>
+                {
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Pregunta", "Pregunta")
+                        .WithMany("opciones")
+                        .HasForeignKey("PreguntaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Pregunta", b =>
+                {
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Encuesta", "Encuesta")
+                        .WithMany("preguntas")
+                        .HasForeignKey("EncuestaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

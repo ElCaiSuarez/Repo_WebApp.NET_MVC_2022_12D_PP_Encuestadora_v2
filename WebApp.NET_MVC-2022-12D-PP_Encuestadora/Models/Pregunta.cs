@@ -18,15 +18,20 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         [MaxLength(40, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string tituloPregunta { get; set; }
 
+        //RELACIONES CON OTRAS ENTIDADES
+        //RELACION 1 a 1 CON PUNTOSENCUESTA
         [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Tipo pregunta")]
         [EnumDataType(typeof(TipoPregunta))]
         public TipoPregunta tipoPregunta { get; set; }
 
-        //RELACIONES CON OTRAS ENTIDADES
-
+        //FK ENCUESTA
+        public int EncuestaId { get; set; }
+        public Encuesta Encuesta { get; set; }
+        
+        //RELACION 1 a N CON OPCIONPREGUNTA
         [Display(Name = "Opciones")]
-        public IEnumerable<OpcionPregunta> opciones { get; set; }
+        public ICollection<OpcionPregunta> opciones { get; set; }
 
         //COMO RELACIONAR EL TIPO DE PREGUNTA CON EL INPUT DEL FORMULARIO???
     }
