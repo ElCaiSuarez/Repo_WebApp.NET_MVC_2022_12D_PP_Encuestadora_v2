@@ -10,8 +10,8 @@ using WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context;
 namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
 {
     [DbContext(typeof(EncuestadoraDBContext))]
-    [Migration("20220607023308_CrearBaseDeDatos_v3")]
-    partial class CrearBaseDeDatos_v3
+    [Migration("20220612132349_GenerarBaseDeDatos")]
+    partial class GenerarBaseDeDatos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,19 +94,37 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                     b.ToTable("encuestas");
                 });
 
-            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.EncuestasUsuarios", b =>
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.EncuestaRespondida", b =>
                 {
+                    b.Property<int>("EncuestaRespondidaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("EncuestaId")
                         .HasColumnType("int");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
-                    b.HasKey("EncuestaId", "UsuarioId");
+                    b.Property<DateTime>("datetimeCreacionEncuesta")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("puntosEncuesta")
+                        .HasColumnType("int");
+
+                    b.Property<string>("tituloEncuesta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.HasKey("EncuestaRespondidaId");
+
+                    b.HasIndex("EncuestaId");
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("encuestasUsuarios");
+                    b.ToTable("EncuestaRespondida");
                 });
 
             modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.OpcionPregunta", b =>
@@ -157,6 +175,31 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                     b.HasIndex("EncuestaId");
 
                     b.ToTable("preguntas");
+                });
+
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.PreguntaRespondida", b =>
+                {
+                    b.Property<int>("PreguntaRespondidaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EncuestaRespondidaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PreguntaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Respuesta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PreguntaRespondidaId");
+
+                    b.HasIndex("EncuestaRespondidaId");
+
+                    b.HasIndex("PreguntaId");
+
+                    b.ToTable("respuestas");
                 });
 
             modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Usuario", b =>
@@ -210,16 +253,16 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.EncuestasUsuarios", b =>
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.EncuestaRespondida", b =>
                 {
-                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Encuesta", "Encuesta")
-                        .WithMany("EncuestasUsuarios")
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Encuesta", "encuesta")
+                        .WithMany("encuestasContestadas")
                         .HasForeignKey("EncuestaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Usuario", "Usuario")
-                        .WithMany("EncuestasUsuarios")
+                        .WithMany("encuestasRespondidas")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -240,6 +283,21 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Migrations
                         .WithMany("preguntas")
                         .HasForeignKey("EncuestaId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.PreguntaRespondida", b =>
+                {
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.EncuestaRespondida", "encuestaRespondida")
+                        .WithMany("preguntasRespondidas")
+                        .HasForeignKey("EncuestaRespondidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Pregunta", "Pregunta")
+                        .WithMany("respuestas")
+                        .HasForeignKey("PreguntaId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

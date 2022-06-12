@@ -1,58 +1,100 @@
-﻿@model WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Encuesta
-
+﻿@model IEnumerable<WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models.Pregunta>
 
 @{
     ViewData["Title"] = "Responder";
 }
 
-<h1>@Html.DisplayFor(model => model.tituloEncuesta)</h1>
+@*
+                    Quiero que con el Id de la encuesta me traiga el nombre y mostrar eso
+    @Html.DisplayFor(model => _context.encuestas.Where(e => e.EncuestaId == model.EncuestaId).FirstOrDefault<Encuesta>().)
 
+
+    <h1>@Html.DisplayFor(model => model.tituloEncuesta)</h1>
+*@
+<head>
+
+</head>
 <div>
     <a asp-action="Disponibles">Volver a Encuestas</a>
-    <hr />
-    <dl class="row">
-        @*
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.tituloEncuesta)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.tituloEncuesta)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.datetimeCreacionEncuesta)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.datetimeCreacionEncuesta)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.datetimeVencimientoEncuesta)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.datetimeVencimientoEncuesta)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.puntosEncuesta)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.puntosEncuesta)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Cliente)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Cliente.mailCliente)
-            </dd>*@
-    </dl>
 </div>
 
-<p>Comentario1: Deberia filtrar y mostrar las preguntas y opciones de la @Html.DisplayFor(model => model.tituloEncuesta)</p>
-<p>Comentario2: Deberia guardar la Opcion seleccionada por el usuario</p>
-<p>Comentario3: El boton Finalizar Encuesta deberia guardar la relacion EncuestaUsuario (y sumar puntos al usuario?)</p>
-<div>
-    @*<a asp-action="Edit" asp-route-id="@Model.EncuestaId">Edit</a> |*@
-    <input type="hidden" asp-for="EncuestaId" />
-    <input type="submit" value="Finalizar Encuesta" class="btn btn-danger" />
-    @*<a asp-action="Disponibles">Volver a Encuestas</a>*@
-    <p><a class="text-dark" asp-area="" asp-controller="EncuestaUsuario" asp-action="Index">Relacionar EncuestasUsuarios</a></p>
 
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Enunciado</p>
+                @*
+                    @Html.DisplayNameFor(model => model.tituloPregunta)
+                *@
+            </th>
+            <th>
+                <p>Opciones</p>
+            </th>
+
+            @*
+                        <th>
+                                                @Html.DisplayNameFor(model => model.Cliente)
+
+
+                                                private readonly EncuestadoraDBContext _context;
+                                            </th>
+                <th></th>
+            *@
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tituloPregunta)
+                </td>
+                <td>
+                    @foreach (var opcion in item.opciones)
+                    {
+                        var enunciado = opcion.tituloOpcion;
+                        @if (item.tipoPregunta.Equals("RADIO"))
+                        {
+                            @Html.RadioButton(opcion.tituloOpcion, enunciado)
+                        }
+                        else
+                        {
+                            @Html.CheckBox(opcion.tituloOpcion, enunciado)
+                        }
+                    }
+                </td>
+
+
+                <td>
+                    <a asp-action="Responder" asp-route-id="@item.EncuestaId">Responder</a>
+                    <a asp-action="Edit" asp-route-id="@item.EncuestaId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EncuestaId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EncuestaId">Delete</a>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+@*
+
+    <p>Comentario1: Deberia filtrar y mostrar las preguntas y opciones de la @Html.DisplayFor(model => model.tituloEncuesta)</p>
+    <p>Comentario2: Deberia guardar la Opcion seleccionada por el usuario</p>
+    <p>Comentario3: El boton Finalizar Encuesta deberia guardar la relacion EncuestaUsuario (y sumar puntos al usuario?)</p>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.EncuestaId">Edit</a> |
+        <input type="hidden" asp-for="EncuestaId" />
+        <input type="submit" value="Finalizar Encuesta" class="btn btn-danger" />
+        <a asp-action="Disponibles">Volver a Encuestas</a>
+        <p><a class="text-dark" asp-area="" asp-controller="EncuestaUsuario" asp-action="Index">Relacionar EncuestasUsuarios</a></p>
+
+    </div>
+*@
+
+
+
+
