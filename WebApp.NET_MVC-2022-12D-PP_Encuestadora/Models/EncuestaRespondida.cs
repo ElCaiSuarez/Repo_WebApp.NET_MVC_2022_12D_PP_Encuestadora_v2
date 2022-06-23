@@ -1,36 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
 {
-    public class Encuesta
-
+    public class EncuestaRespondida
     {
-        public Encuesta()
-        {
-            this.preguntas = new List<Pregunta>();
-        }
-
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int EncuestaRespondidaId { get; set; }
+
         public int EncuestaId { get; set; }
+
+        public Encuesta encuesta { get; set; }
 
         [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Titulo encuesta")]
         [MaxLength(40, ErrorMessage = "El maximo permitido para el {0} es {1}")]
         public string tituloEncuesta { get; set; }
 
-        [Display(Name = "Fecha creación")]
+        [Display(Name = "Fecha respuesta")]
         [DataType(DataType.Date)]
         public DateTime datetimeCreacionEncuesta { get; set; }
-
-        [Display(Name = "Fecha vencimiento")]
-        [DataType(DataType.Date)]
-        public DateTime datetimeVencimientoEncuesta { get; set; }
 
         //RELACIONES CON OTRAS ENTIDADES
         //RELACION 1 a 1 CON PUNTOSENCUESTA
@@ -38,20 +32,12 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         [EnumDataType(typeof(PuntosEncuesta))]
         public PuntosEncuesta puntosEncuesta { get; set; }
 
-        //FK CLIENTE
-        public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
 
         //RELACION 1 a N CON PREGUNTA
-        [Display(Name = "Preguntas")]
-        public ICollection<Pregunta> preguntas { get; set; }
-        
-        //RELACION N a N CON USUARIO
-        [Display(Name = "EncuestasUsuarios")]
-        //public ICollection<EncuestaRespondida> encuestasContestadas { get; set; }
-        public ICollection<EncuestaRespondida> encuestasContestadas { get; set; } 
+        [Display(Name = "Preguntas Respondidas")]
+        public ICollection<PreguntaRespondida> preguntasRespondidas { get; set; }
 
-
-
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }

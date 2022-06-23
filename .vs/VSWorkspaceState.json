@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora",
-    "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Views",
-    "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Views\\Home"
+    "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Controllers"
   ],
-  "SelectedNode": "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\WebApp.NET_MVC-2022-12D-PP_Encuestadora\\Controllers\\EncuestaController.cs",
   "PreviewInSolutionExplorer": false
 }

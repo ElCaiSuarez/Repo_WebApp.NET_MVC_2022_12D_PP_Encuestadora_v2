@@ -47,12 +47,13 @@
                 @*<td>
                     @Html.DisplayFor(modelItem => item.Cliente.mailCliente)
                 </td>*@
-                <td>
-                    <a asp-action="Responder" asp-route-id="@item.EncuestaId">Responder</a>
-                    @*<a asp-action="Edit" asp-route-id="@item.EncuestaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.EncuestaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EncuestaId">Delete</a>*@
-                </td>
+            <td>
+                <a asp-action="ResponderEncuestaCont" asp-route-id="@item.EncuestaId">ResponderEncuestaCont</a>
+                <a asp-action="Responder" asp-route-id="@item.EncuestaId">Responder</a>
+                @*<a asp-action="Edit" asp-route-id="@item.EncuestaId">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.EncuestaId">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.EncuestaId">Delete</a>*@
+            </td>
             </tr>
         }
     </tbody>

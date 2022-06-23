@@ -10,7 +10,7 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context
     {
         //Configuring Many To Many Relationships in Entity Framework Core
         //https://www.learnentityframeworkcore.com/configuration/many-to-many-relationship-configuration
-        //Fluent API - Relacion N a N entre Encuesta y Usuario
+        /*//Fluent API - Relacion N a N entre Encuesta y Usuario
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EncuestasUsuarios>()
@@ -24,6 +24,17 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context
                 .WithMany(c => c.EncuestasUsuarios)
                 .HasForeignKey(bc => bc.UsuarioId);
         }
+        */
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<PreguntaRespondida>()
+                .HasOne(e => e.Pregunta)
+                .WithMany(e => e.respuestas)
+                .OnDelete(DeleteBehavior.ClientCascade);
+        }
+
         public EncuestadoraDBContext(DbContextOptions<EncuestadoraDBContext> options) : base(options)
         {
         }
@@ -37,7 +48,9 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Context
 
         public DbSet<OpcionPregunta> opciones { get; set; }
 
-        public DbSet<EncuestasUsuarios> encuestasUsuarios { get; set; }     
+        public DbSet<PreguntaRespondida> respuestas { get; set; }
+
+        public DbSet<EncuestaRespondida> EncuestaRespondida { get; set; }
 
 
     }

@@ -9,6 +9,13 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
 {
     public class Pregunta
     {   
+        public Pregunta()
+        {
+            this.opciones = new List<OpcionPregunta>();
+            this.respuestas = new List<PreguntaRespondida>();
+        }
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PreguntaId { get; set; }
@@ -28,11 +35,15 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         //FK ENCUESTA
         public int EncuestaId { get; set; }
         public Encuesta Encuesta { get; set; }
-        
+
         //RELACION 1 a N CON OPCIONPREGUNTA
         [Display(Name = "Opciones")]
+        //public ICollection<OpcionPregunta> opciones { get; set; }
         public ICollection<OpcionPregunta> opciones { get; set; }
+        //{ get; set}
 
+        //public ICollection<PreguntaRespondida> respuestas { get; set; }
+        public ICollection<PreguntaRespondida> respuestas { get; set; }
         //COMO RELACIONAR EL TIPO DE PREGUNTA CON EL INPUT DEL FORMULARIO???
     }
 }

@@ -8,7 +8,6 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
     public enum TipoPregunta
     {
         RADIO,
-        OPTGROUP,
-        RANGE
+        OPTGROUP
     }
 }

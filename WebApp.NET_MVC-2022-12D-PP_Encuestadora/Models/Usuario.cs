@@ -48,10 +48,15 @@ namespace WebApp.NET_MVC_2022_12D_PP_Encuestadora.Models
         [Display(Name = "Preferencias")]
         [EnumDataType(typeof(PreferenciaUsuario))]
         public PreferenciaUsuario preferenciaUsuario { get; set; }
-        
+
         //RELACION N a N CON ENCUESTA
-        [Display(Name = "EncuestasUsuarios")]
-        public ICollection<EncuestasUsuarios> EncuestasUsuarios { get; set; }
+        //[Display(Name = "EncuestasUsuarios")]
+        //public ICollection<EncuestasUsuarios> EncuestasUsuarios { get; set; }
+
+        //RELACION N a N CON ENCUESTA
+        [Display(Name = "EncuestaRespondida")]
+        public ICollection<EncuestaRespondida> encuestasRespondidas { get; set; }
+
 
 
     }
